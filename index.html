@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSAQB Certification Program - CPSA-F</title>
+    <!-- Include Mermaid from CDN (version 10.9.1 as of April 2025) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a2a44;
+            color: #e0e7ff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        .tab {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab button {
+            background-color: #2a3b5a;
+            color: #00d4ff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 20px;
+            transition: 0.3s;
+            font-size: 1.1em;
+            border-radius: 10px 10px 0 0;
+            margin: 5px;
+        }
+        .tab button:hover {
+            background-color: #3e4e6e;
+        }
+        .tab button.active {
+            background-color: #00d4ff;
+            color: #1a2a44;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            background-color: #2a3b5a;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .tabcontent.active {
+            display: block;
+        }
+        .tabcontent h2 {
+            color: #00d4ff;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .tabcontent h3 {
+            color: #00d4ff;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .tabcontent h4 {
+            color: #00d4ff;
+            font-size: 1.2em;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .tabcontent p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .tabcontent ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .tabcontent ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .tabcontent ul li:before {
+            content: '•';
+            color: #00d4ff;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .flowchart-step {
+            background-color: #3e4e6e;
+            color: #e0e7ff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .flowchart-step:not(:last-child):after {
+            content: '↓';
+            color: #00d4ff;
+            font-size: 2em;
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #3e4e6e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #4a5a7a;
+        }
+        th {
+            background-color: #4a5a7a;
+            color: #00d4ff;
+        }
+        td {
+            color: #e0e7ff;
+        }
+        .section {
+            background-color: #3e4e6e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .process-steps, .principles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .step, .principle {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            background-color: #4a5a7a;
+            border-radius: 6px;
+            border-left: 3px solid #00d4ff;
+        }
+        .step h4, .principle h4 {
+            margin-top: 0;
+            color: #00d4ff;
+        }
+        .design-level {
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: #4a5a7a;
+            border-radius: 6px;
+            border-left: 3px solid #6f42c1;
+        }
+        .design-level h3 {
+            margin-top: 0;
+            color: #6f42c1;
+        }
+        .benefits {
+            background-color: #4a5a7a;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1.5rem;
+        }
+        .benefits h3 {
+            margin-top: 0;
+            color: #00d4ff;
+            font-size: 1.1rem;
+        }
+        .mermaid {
+            margin: 2rem 0;
+            background: #3e4e6e;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #4a5a7a;
+        }
+        footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #4a5a7a;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #e0e7ff;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({ 
+                startOnLoad: true,
+                theme: 'neutral',
+                flowchart: {
+                    curve: 'basis',
+                    useMaxWidth: true
+                },
+                securityLevel: 'loose'
+            });
+        });
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Introduction to the iSAQB Certification Program</h1>
+        
+        <div class="tab">
+            <button class="tablinks active" onclick="openTab(event, 'Overview')">Overview</button>
+            <button class="tablinks" onclick="openTab(event, 'BasicTerms')">Basic Terms</button>
+            <button class="tablinks" onclick="openTab(event, 'Requirements')">Requirements & Constraints</button>
+            <button class="tablinks" onclick="openTab(event, 'Design')">Design & Development</button>
+            <button class="tablinks" onclick="openTab(event, 'Description')">Description & Communication</button>
+            <button class="tablinks" onclick="openTab(event, 'Analysis')">Analysis & Evaluation</button>
+            <button class="tablinks" onclick="openTab(event, 'Tools')">Tools (Optional)</button>
+            <button class="tablinks" onclick="openTab(event, 'Examples')">Examples</button>
+            <button class="tablinks" onclick="openTab(event, 'SystematicDesign')">Systematic Design</button>
+        </div>
+
+        <div id="Overview" class="tabcontent active">
+            <h2>Introduction to the iSAQB Certification Program</h2>
+            <p>The International Software Architecture Qualification Board (iSAQB) is a globally recognized organization dedicated to standardizing software architecture education and certification. It provides a structured curriculum for professionals to enhance their skills in designing robust, scalable, and maintainable software systems.</p>
+            <p>The Certified Professional for Software Architecture - Foundation Level (CPSA-F) is the entry-level certification offered by iSAQB. It equips professionals with the foundational knowledge and skills needed to excel in software architecture, covering key areas such as design, communication, and evaluation of architectures.</p>
+        </div>
+
+        <div id="BasicTerms" class="tabcontent">
+            <h2>Basic Terms in Software Architecture</h2>
+            <p>Software architecture involves several fundamental concepts:</p>
+            <ul>
+                <li><strong>Architecture:</strong> The structure of a system, comprising components, their relationships, and principles guiding design and evolution.</li>
+                <li><strong>Component:</strong> A modular, reusable unit with defined interfaces.</li>
+                <li><strong>Stakeholder:</strong> Individuals or groups with an interest in the system (e.g., developers, users, management).</li>
+                <li><strong>Quality Attributes:</strong> Measurable properties like performance, scalability, and security.</li>
+            </ul>
+        </div>
+
+        <div id="Requirements" class="tabcontent">
+            <h2>Requirements and Constraints</h2>
+            <p>Requirements define what the system should do, while constraints limit how it can be done.</p>
+            <ul>
+                <li><strong>Functional Requirements:</strong> Specific features or behaviors (e.g., "The system must process payments").</li>
+                <li><strong>Non-Functional Requirements:</strong> Quality attributes (e.g., "The system must handle 1000 users concurrently").</li>
+                <li><strong>Constraints:</strong> External limits (e.g., budget, technology stack, regulatory compliance).</li>
+            </ul>
+        </div>
+
+        <div id="Design" class="tabcontent">
+            <h2>Design and Development of Software Architectures</h2>
+            <p>Designing an architecture involves breaking down the system into manageable parts.</p>
+            <ul>
+                <li><strong>Top-Down Approach:</strong> Start with high-level requirements and refine into components.</li>
+                <li><strong>Patterns:</strong> Use established solutions like MVC or Microservices.</li>
+                <li><strong>Iterative Design:</strong> Refine the architecture through feedback and prototyping.</li>
+            </ul>
+
+            <h2>Software Architecture Design Approaches</h2>
+            <p>Comprehensive guide to software architecture design approaches and principles, focusing on the transition from requirements to implementation.</p>
+
+            <!-- 0. How Software Architecture Evolves -->
+            <div class="section">
+                <h3>0. How Software Architecture Evolves</h3>
+                <p>Software architecture is not a static blueprint—it’s a living, evolving entity shaped by multiple forces and refined over time. Here’s how it unfolds:</p>
+                <div class="principles">
+                    <div class="principle">
+                        <h4>Architecture, Organization, and Systems Shape Each Other</h4>
+                        <p>The way a company is structured, how teams work, and what systems are in place all influence the software architecture—and vice versa.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Customer and Team Inputs Continuously Evolve</h4>
+                        <p>Requirements, goals, and priorities can change as customers and teams learn more or respond to the market.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Architecture Must Adapt Iteratively</h4>
+                        <p>Instead of designing everything up front, architecture should evolve step-by-step based on feedback and real-world use.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Spot and Prevent Design Issues Early</h4>
+                        <p>Early attention to architecture helps avoid bigger problems later—like performance bottlenecks or inflexible systems.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Start with Customer Needs and Goals</h4>
+                        <p>Good design begins by listening to the people using and building the system, ensuring their needs are reflected in the solution.</p>
+                    </div>
+                </div>
+                <h4>The Architecture Loop</h4>
+                <div class="mermaid">
+                    graph TD
+                        A[Customer & Stakeholders - Data] --> B[Requirements, Influences & Risks]
+                        B --> C[Architecture Design Structure & Technical Concepts]
+                        C --> D[Communicate Architecture, Feedback & Team Input]
+                        D --> E[Monitor Implementation]
+                        E --> F[Review Architecture]
+                        F --> B
+                        F --> G[End: Deliver System]
+                        G --> A
+                </div>
+                <p>Architecture isn’t fixed—it grows with your understanding of the system, your users, and your business environment.</p>
+            </div>
+
+            <!-- 1. From WHAT to HOW: Structure of the Design Process -->
+            <div class="section">
+                <h3>1. From WHAT to HOW: Structure of the Design Process</h3>
+                <p>The software design process bridges the gap between <strong>what</strong> the system needs to do (requirements) and <strong>how</strong> it will do it (implementation). This transition follows a structured approach with increasing levels of detail and specificity.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef what fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+                        classDef how fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef transition fill:#fff3e0,stroke:#e65100,stroke-width:2px
+                        Requirements[Requirements Analysis<br>WHAT] --> Architecture[Architecture Design]
+                        Architecture --> SubSystems[Subsystem Definition]
+                        SubSystems --> Interfaces[Interface Design]
+                        Interfaces --> Components[Component Design]
+                        Components --> DataStructures[Data Structure Design]
+                        DataStructures --> Algorithms[Algorithm Design]
+                        Algorithms --> Implementation[Implementation<br>HOW]
+                        Requirements -->|Validation| Implementation
+                        subgraph Rough_Design[Rough Design]
+                            Architecture
+                            SubSystems
+                            Interfaces
+                        end
+                        subgraph Detailed_Design[Detailed Design]
+                            Components
+                            DataStructures
+                            Algorithms
+                        end
+                        class Requirements what
+                        class Implementation how
+                        class Architecture,SubSystems,Interfaces,Components,DataStructures,Algorithms transition
+                </div>
+                <div class="design-level">
+                    <h3>Rough Design: Overall System Structure</h3>
+                    <p>The rough design phase establishes the foundation of the system architecture by defining:</p>
+                    <ul>
+                        <li><strong>System Architecture:</strong> Key architectural patterns, styles, and approaches.</li>
+                        <li><strong>Subsystems:</strong> Major functional areas and their boundaries.</li>
+                        <li><strong>Interfaces:</strong> Communication points between subsystems and with external systems.</li>
+                        <li><strong>Responsibilities:</strong> Distribution of system requirements among architectural elements.</li>
+                        <li><strong>Technology Selection:</strong> Major technology choices and frameworks.</li>
+                    </ul>
+                    <p><em>Outcome: A high-level blueprint that addresses major quality attributes and constraints.</em></p>
+                </div>
+                <div class="design-level">
+                    <h3>Detailed Design: Internal Structure</h3>
+                    <p>The detailed design phase elaborates the internals of the architectural elements:</p>
+                    <ul>
+                        <li><strong>Component Design:</strong> Internal structure and behavior of individual components.</li>
+                        <li><strong>Data Structure Design:</strong> Design of domain objects, data models, and persistence schema.</li>
+                        <li><strong>Algorithm Design:</strong> Specific processing logic and computational approaches.</li>
+                        <li><strong>Error Handling:</strong> Exception and error management strategies.</li>
+                        <li><strong>Resource Management:</strong> Memory, storage, and processing resource allocation.</li>
+                    </ul>
+                    <p><em>Outcome: Implementation-ready specifications that guide development.</em></p>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Rough Design</th>
+                            <th>Detailed Design</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Focus</td>
+                            <td>System as a whole</td>
+                            <td>Individual components</td>
+                        </tr>
+                        <tr>
+                            <td>Stakeholders</td>
+                            <td>Architects, business analysts, project managers</td>
+                            <td>Developers, technical leads</td>
+                        </tr>
+                        <tr>
+                            <td>Documentation</td>
+                            <td>Architecture diagrams, interface specifications</td>
+                            <td>UML class diagrams, sequence diagrams, data models</td>
+                        </tr>
+                        <tr>
+                            <td>Decision Impact</td>
+                            <td>System-wide, difficult to change later</td>
+                            <td>Component-level, can be refined iteratively</td>
+                        </tr>
+                        <tr>
+                            <td>Quality Focus</td>
+                            <td>Global quality attributes (scalability, security)</td>
+                            <td>Local quality attributes (code maintainability, performance)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Architectural Design Methods</h4>
+                <p>These methods provide structured approaches to transition from requirements to implementation:</p>
+                <div class="principles">
+                    <div class="principle">
+                        <h4>Model-Driven Architecture Development</h4>
+                        <p>Uses models for abstraction and clarity.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>View-Based Architecture Development</h4>
+                        <p>Manages complexity with role-specific views.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Domain-Driven Design</h4>
+                        <p>Focuses on business domains.</p>
+                    </div>
+                </div>
+                <div class="mermaid">
+                    graph TD
+                        MDA[Model-Driven Architecture] -->|Abstraction| Models[Models]
+                        VBA[View-Based Architecture] -->|Views| Roles[Role-Specific Views]
+                        DDD[Domain-Driven Design] -->|Focus| Domain[Business Domain]
+                        Models --> System[System Design]
+                        Roles --> System
+                        Domain --> System
+                </div>
+            </div>
+
+            <!-- 2. Design Principles -->
+            <div class="section">
+                <h3>2. Design Principles</h3>
+                <p>Design principles help software architects create effective solutions by providing proven approaches to common challenges, focusing on complexity reduction, flexibility enhancement, and improved changeability.</p>
+                <h4>Design Principles - Overview</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Abstraction</th>
+                            <th>Modularization</th>
+                            <th>Conceptual Integrity</th>
+                            <th>Simplicity</th>
+                            <th>Expect Errors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Development of appropriate generalizations</td>
+                            <td>Loose coupling</td>
+                            <td>Achieving uniform solutions for similar problems</td>
+                            <td>Reduction of complexity</td>
+                            <td>Design of robust and resilient systems</td>
+                        </tr>
+                        <tr>
+                            <td>Dependence on abstractions</td>
+                            <td>High cohesion</td>
+                            <td>Principle of least surprise</td>
+                            <td>KISS (Keep It Simple, Stupid) & YAGNI (You Aren’t Gonna Need It)</td>
+                            <td>Evaluate strengths and weaknesses</td>
+                        </tr>
+                        <tr>
+                            <td>Interfaces as abstractions</td>
+                            <td>Separation of Concerns</td>
+                            <td></td>
+                            <td></td>
+                            <td>Postel's Law</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Information Hiding</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>SOLID principles</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mermaid">
+                    graph TD
+                        classDef principle fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        classDef problem fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+                        subgraph Problems[Main Design Problems]
+                            P1[Complexity]
+                            P2[Rigidity]
+                            P3[Poor Changeability]
+                        end
+                        subgraph Principles[Design Principles]
+                            SRP[Single Responsibility]
+                            OCP[Open/Closed]
+                            LSP[Liskov Substitution]
+                            ISP[Interface Segregation]
+                            DIP[Dependency Inversion]
+                            LoD[Law of Demeter]
+                            CRP[Common Reuse]
+                            SoC[Separation of Concerns]
+                            IH[Information Hiding]
+                        end
+                        Principles --> Solutions
+                        subgraph Solutions[Architectural Benefits]
+                            S1[Reduced Complexity]
+                            S2[Increased Flexibility]
+                            S3[Improved Changeability]
+                            S4[Enhanced Maintainability]
+                        end
+                        P1 --> S1
+                        P2 --> S2
+                        P3 --> S3
+                        class P1,P2,P3 problem
+                        class SRP,OCP,LSP,ISP,DIP,LoD,CRP,SoC,IH principle
+                </div>
+                <h4>Application of Design Principles</h4>
+                <p>Design principles don’t exist in isolation—they work together to create robust architectures. The following diagram illustrates how these principles interact to solve common architectural challenges:</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef principle fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        classDef intermediate fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef benefit fill:#fff3e0,stroke:#e65100,stroke-width:2px
+                        SRP[Single Responsibility] -->|Enables| Mod[Modularity]
+                        SoC[Separation of Concerns] -->|Promotes| Mod
+                        ISP[Interface Segregation] -->|Achieves| LC[Loose Coupling]
+                        DIP[Dependency Inversion] -->|Supports| LC
+                        OCP[Open/Closed] -->|Enables| Ext[Extensibility]
+                        LSP[Liskov Substitution] -->|Ensures| Ext
+                        IH[Information Hiding] -->|Provides| Enc[Encapsulation]
+                        Mod --> RC[Reduced Complexity]
+                        LC --> IF[Increased Flexibility]
+                        Ext --> IC[Improved Changeability]
+                        Enc --> IC
+                        Mod --> EM[Enhanced Maintainability]
+                        LC --> BT[Better Testability]
+                        Enc --> IR[Improved Reusability]
+                        class SRP,SoC,ISP,DIP,OCP,LSP,IH principle
+                        class Mod,LC,Ext,Enc intermediate
+                        class RC,IF,IC,EM,BT,IR benefit
+                </div>
+                <div class="principles">
+                    <div class="principle">
+                        <h4>Single Responsibility Principle (SRP)</h4>
+                        <p>A class or component should have only one reason to change.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Open/Closed Principle (OCP)</h4>
+                        <p>Entities should be open for extension but closed for modification.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Liskov Substitution Principle (LSP)</h4>
+                        <p>Subclasses should be substitutable for their base classes.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Interface Segregation Principle (ISP)</h4>
+                        <p>Clients should not depend on interfaces they don’t use.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Dependency Inversion Principle (DIP)</h4>
+                        <p>Depend on abstractions, not concretions.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Separation of Concerns (SoC)</h4>
+                        <p>Handle different aspects in distinct modules.</p>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <h3>Benefits of Applying Design Principles</h3>
+                    <ul>
+                        <li><strong>Reduced Complexity:</strong> Makes systems easier to understand.</li>
+                        <li><strong>Increased Flexibility:</strong> Enables adaptation to changes.</li>
+                        <li><strong>Improved Changeability:</strong> Localizes change impact.</li>
+                        <li><strong>Enhanced Maintainability:</strong> Simplifies updates.</li>
+                        <li><strong>Better Testability:</strong> Facilitates testing.</li>
+                        <li><strong>Improved Reusability:</strong> Enables component reuse.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Model-Based Illustrations -->
+            <div class="section">
+                <h3>3. Model-Based Illustrations</h3>
+                <p>Model-based illustrations provide a high-level component overview, focusing on essential components and their relationships using abstraction and clarity.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef system fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+                        classDef external fill:#fff8e1,stroke:#ff8f00,stroke-width:2px
+                        OP[Order Processing] --> IM[Inventory Management]
+                        OP --> CM[Customer Management]
+                        OP --> PP[Payment Processing]
+                        IM --> DB[(Product Database)]
+                        PP --> ES[External Payment Service]
+                        CM --> CDB[(Customer Database)]
+                        subgraph Core_System[Core System]
+                            OP
+                            IM
+                            CM
+                            PP
+                        end
+                        class OP,IM,CM,PP system
+                        class ES,DB,CDB external
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Simplifies communication.</li>
+                        <li>Provides appropriate abstraction levels.</li>
+                        <li>Enables efficient structure communication.</li>
+                        <li>Offers a common language for stakeholders.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. View-Based Architecture Development -->
+            <div class="section">
+                <h3>4. View-Based Architecture Development</h3>
+                <p>View-based architecture development manages complexity by dividing the architecture into role-specific views.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef logicalView fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        classDef technicalView fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef operationalView fill:#fff3e0,stroke:#e65100,stroke-width:2px
+                        subgraph Logical_View[Logical View<br>Business Stakeholders]
+                            BP[Business Processes]
+                            DM[Domain Model]
+                            UF[User Flows]
+                        end
+                        subgraph Technical_View[Technical View<br>Developers]
+                            CI[Component Interfaces]
+                            CD[Component Design]
+                            DD[Data Design]
+                            API[API Specifications]
+                        end
+                        subgraph Operational_View[Operational View<br>Operations Team]
+                            SV[Server Deployment]
+                            NT[Network Topology]
+                            SC[Scaling Configuration]
+                            DR[Disaster Recovery]
+                        end
+                        BP --> CI
+                        DM --> CD
+                        UF --> API
+                        CI --> SV
+                        CD --> NT
+                        DD --> SC
+                        API --> DR
+                        class BP,DM,UF logicalView
+                        class CI,CD,DD,API technicalView
+                        class SV,NT,SC,DR operationalView
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Provides tailored information.</li>
+                        <li>Manages complexity effectively.</li>
+                        <li>Ensures consistent understanding.</li>
+                        <li>Balances detail and clarity.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5. Domain-Driven Design -->
+            <div class="section">
+                <h3>5. Domain-Driven Design (DDD)</h3>
+                <p>DDD aligns architecture with business domains.</p>
+                <div class="mermaid">
+                    graph LR
+                        classDef trading fill:#e8eaf6,stroke:#303f9f,stroke-width:2px
+                        classDef settlement fill:#e0f7fa,stroke:#006064,stroke-width:2px
+                        classDef risk fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+                        subgraph Trading[Trading Context]
+                            OE[Order Entry]
+                            TE[Trade Execution]
+                            PM[Position Management]
+                            OE --> TE
+                            TE --> PM
+                        end
+                        subgraph Settlement[Settlement Context]
+                            CL[Clearing]
+                            SP[Settlement Process]
+                            RC[Reconciliation]
+                            CL --> SP
+                            SP --> RC
+                        end
+                        subgraph Risk_Management[Risk Context]
+                            CR[Credit Risk]
+                            MR[Market Risk]
+                            RA[Risk Analytics]
+                            CR --> RA
+                            MR --> RA
+                        end
+                        Trading -->|Trade Events| Settlement
+                        Settlement -->|Position Updates| Trading
+                        Settlement -->|Settlement Data| Risk_Management
+                        Trading -->|Position Data| Risk_Management
+                        class OE,TE,PM trading
+                        class CL,SP,RC settlement
+                        class CR,MR,RA risk
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Ensures business alignment.</li>
+                        <li>Establishes clear boundaries.</li>
+                        <li>Facilitates explicit integration.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 6. Evolutionary Architecture -->
+            <div class="section">
+                <h3>6. Evolutionary Architecture</h3>
+                <p>Evolutionary architecture designs systems to evolve over time through small-scale adjustments.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef current fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef future fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,stroke-dasharray: 5 5
+                        classDef feedback fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        subgraph Iteration_1[Iteration 1<br>Current Architecture]
+                            A1[Monolithic App]
+                            DB1[(Single Database)]
+                            A1 --> DB1
+                        end
+                        subgraph Iteration_2[Iteration 2<br>Transitional]
+                            A2[Monolithic App]
+                            S1[New Service 1]
+                            DB2[(Main Database)]
+                            DBS1[(Service Database)]
+                            A2 --> DB2
+                            A2 --> S1
+                            S1 --> DBS1
+                        end
+                        subgraph Iteration_3[Iteration 3<br>Future Architecture]
+                            S2[Service 1]
+                            S3[Service 2]
+                            S4[Service 3]
+                            API[API Gateway]
+                            DBS2[(Service 1 DB)]
+                            DBS3[(Service 2 DB)]
+                            DBS4[(Service 3 DB)]
+                            API --> S2
+                            API --> S3
+                            API --> S4
+                            S2 --> DBS2
+                            S3 --> DBS3
+                            S4 --> DBS4
+                        end
+                        Metrics1[Fitness Functions<br>Performance Metrics<br>Integration Tests<br>Compliance] --> Iteration_1
+                        Metrics2[Fitness Functions<br>Service Independence<br>Data Isolation<br>Response Time] --> Iteration_2
+                        Metrics3[Fitness Functions<br>Scalability<br>Resilience<br>Latency] --> Iteration_3
+                        Iteration_1 --> Iteration_2
+                        Iteration_2 --> Iteration_3
+                        class A1,DB1 current
+                        class S2,S3,S4,API,DBS2,DBS3,DBS4 future
+                        class Metrics1,Metrics2,Metrics3 feedback
+                </div>
+                <div class="process-steps">
+                    <div class="step">
+                        <h4>1. Incremental Change</h4>
+                        <p>Small, manageable changes.</p>
+                    </div>
+                    <div class="step">
+                        <h4>2. Guided Change</h4>
+                        <p>Guided by fitness functions.</p>
+                    </div>
+                    <div class="step">
+                        <h4>3. Continuous Feedback</h4>
+                        <p>Regular quality measurement.</p>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Reduces risk.</li>
+                        <li>Adapts to requirements.</li>
+                        <li>Maintains stability.</li>
+                        <li>Provides early feedback.</li>
+                        <li>Encourages innovation.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 7. Two Ways to Approach Software Architecture -->
+            <div class="section">
+                <h3>7. Two Ways to Approach Software Architecture</h3>
+                <p>Top-Down vs. Bottom-Up: Both are valid strategies, often best combined.</p>
+                <div class="principles">
+                    <div class="principle">
+                        <h4>Top-Down Approach</h4>
+                        <p>Start with the big picture, breaking it into subsystems.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Bottom-Up Approach</h4>
+                        <p>Build from reusable components upward.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Coupling and Cohesion -->
+            <div class="section">
+                <h3>8. Coupling and Cohesion</h3>
+                <p>Coupling and cohesion govern how modules interact and function internally.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef module fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        classDef cohesion fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        subgraph Engine[Engine Module<br>High Cohesion]
+                            Piston[Piston Control]
+                            Gear[Gear System]
+                            Spark[Spark Plug]
+                            Piston --> Gear
+                            Gear --> Spark
+                        end
+                        subgraph Radio[Radio Module<br>High Cohesion]
+                            Tuner[Radio Tuner]
+                            Volume[Volume Control]
+                            Display[Display Screen]
+                            Tuner --> Volume
+                            Volume --> Display
+                        end
+                        Engine -->|Minimal Coupling| Radio
+                        Radio -->|Minimal Coupling| Engine
+                        class Engine,Radio module
+                        class Piston,Gear,Spark,Tuner,Volume,Display cohesion
+                </div>
+                <div class="principles">
+                    <div class="principle">
+                        <h4>Coupling</h4>
+                        <p>Dependencies between modules; aim for minimal coupling.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Cohesion</h4>
+                        <p>Internal relatedness; aim for maximum cohesion.</p>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Reduces change impact.</li>
+                        <li>Improves maintainability.</li>
+                        <li>Enhances reusability.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 9. Coupling Types -->
+            <div class="section">
+                <h3>9. Coupling Types</h3>
+                <p>Different types of coupling affect module dependencies.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef center fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef type fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        Coupling[Coupling Types] --> Place[Place of Execution]
+                        Coupling --> Call[Call]
+                        Coupling --> Generation[Generation]
+                        Coupling --> Data[Data]
+                        Coupling --> Time[Time]
+                        Coupling --> Code[Code]
+                        Place --> HW[Same Hardware]
+                        Place --> Process[Same Process]
+                        Place --> Network[Same Network]
+                        Call --> Direct[Direct Use]
+                        Generation --> Gen[Generates Another]
+                        Data --> Param[Call Parameter]
+                        Data --> Struct[Data Structures]
+                        Time --> Timing[Timing]
+                        Code --> Shared[Shared Libraries]
+                        class Coupling center
+                        class Place,Call,Generation,Data,Time,Code,HW,Process,Network,Direct,Gen,Param,Struct,Timing,Shared type
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Reduces dependency.</li>
+                        <li>Improves scalability.</li>
+                        <li>Enhances flexibility.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 10. High Cohesion -->
+            <div class="section">
+                <h3>10. High Cohesion</h3>
+                <p>High cohesion ensures modules focus on single tasks.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef module fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        classDef cohesion fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        subgraph Chef[Gourmet Chef Module<br>High Cohesion]
+                            Prep[Meal Preparation]
+                            Cook[Cooking Logic]
+                            Plate[Plating]
+                            Prep --> Cook
+                            Cook --> Plate
+                        end
+                        class Chef module
+                        class Prep,Cook,Plate cohesion
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Promotes simplicity.</li>
+                        <li>Enhances maintainability.</li>
+                        <li>Improves reusability.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 11. Separation of Concerns -->
+            <div class="section">
+                <h3>11. Separation of Concerns</h3>
+                <p>Separation of concerns divides problems into independent parts.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef functional fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        classDef technical fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        subgraph Product_Team[Product Team<br>Functional Concerns]
+                            FR[Functional Requirements]
+                            QR[Quality Requirements]
+                            WF[Workflow Definition]
+                            FR --> QR
+                            QR --> WF
+                        end
+                        subgraph Dev_Team[Development Team<br>Technical Concerns]
+                            AD[Architectural Design]
+                            TI[Technical Implementation]
+                            TD[Technology Decisions]
+                            AD --> TI
+                            TI --> TD
+                        end
+                        Product_Team -->|Hand-off| Dev_Team
+                        class FR,QR,WF functional
+                        class AD,TI,TD technical
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Promotes high cohesion.</li>
+                        <li>Reduces coupling.</li>
+                        <li>Improves team efficiency.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 12. Information Hiding -->
+            <div class="section">
+                <h3>12. Information Hiding</h3>
+                <p>Information hiding encapsulates complexity within components.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef component fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        classDef interface fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef external fill:#fce4ec,stroke:#880e4f,stroke-width:2px,stroke-dasharray: 5 5
+                        subgraph Payment[Payment Component<br>Black Box]
+                            PD[Payment Data<br>Hidden]
+                            PL[Payment Logic<br>Hidden]
+                            PD --> PL
+                        end
+                        IF[Payment Interface<br>Public API] --> PL
+                        subgraph External[External Module]
+                            EM[Calling Module]
+                        end
+                        EM -->|Access| IF
+                        EM -.->|No Access| PD
+                        EM -.->|No Access| PL
+                        class Payment component
+                        class IF interface
+                        class EM external
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Increases flexibility.</li>
+                        <li>Improves testability.</li>
+                        <li>Enhances stability.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 13. Architecture and Design Patterns -->
+            <div class="section">
+                <h3>13. Architecture and Design Patterns</h3>
+                <p>Patterns provide reusable solutions for common problems.</p>
+                <h4>Layers</h4>
+                <div class="mermaid">
+                    graph TD
+                        classDef layer fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        UI[Presentation Layer] --> BL[Application Layer]
+                        BL --> DL[Infrastructure Layer]
+                        UI -.->|Forbidden| DL
+                        class UI,BL,DL layer
+                </div>
+                <h4>Adapter</h4>
+                <div class="mermaid">
+                    graph TD
+                        classDef client fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef adapter fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        classDef adaptee fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+                        Client[Client] -->|Uses| Target[Target Interface]
+                        Target --> Adapter[Adapter]
+                        Adapter -->|Wraps| Adaptee[Legacy API]
+                        class Client client
+                        class Adapter adapter
+                        class Adaptee adaptee
+                </div>
+                <h4>Plugin</h4>
+                <div class="mermaid">
+                    graph TD
+                        classDef core fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef plugin fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        Core[Text Editor] -->|Extension| IF[Plugin Interface]
+                        IF --> Plugin1[Spell Check]
+                        IF --> Plugin2[Grammar]
+                        class Core core
+                        class Plugin1,Plugin2 plugin
+                </div>
+                <h4>Blackboard</h4>
+                <div class="mermaid">
+                    graph TD
+                        classDef blackboard fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef expert fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        BB[Blackboard] --> E1[Language Expert]
+                        BB --> E2[Statistics Expert]
+                        BB --> E3[Context Expert]
+                        E1 --> BB
+                        E2 --> BB
+                        E3 --> BB
+                        BB --> Solution[Speech Interpretation]
+                        class BB blackboard
+                        class E1,E2,E3 expert
+                </div>
+            </div>
+
+            <!-- 14. Decomposition Techniques -->
+            <div class="section">
+                <h3>14. Decomposition Techniques</h3>
+                <p>Decomposition breaks systems into manageable parts.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef layer fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+                        classDef module fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        classDef external fill:#fff3e0,stroke:#e65100,stroke-width:2px
+                        subgraph Horizontal[Horizontal Decomposition<br>Layers]
+                            UI[Presentation Layer]
+                            BL[Business Logic Layer]
+                            DL[Data Layer]
+                            UI --> BL
+                            BL --> DL
+                        end
+                        subgraph Vertical[Vertical Decomposition<br>Modules]
+                            UM[User Management]
+                            CM[Conversation Management]
+                            KM[Knowledge Management]
+                            UM --> CM
+                            CM --> KM
+                        end
+                        subgraph Interfaces[Defined Interfaces]
+                            API[API Gateway]
+                            SVC[Service Contracts]
+                        end
+                        UI --> API
+                        BL --> SVC
+                        DL --> SVC
+                        API --> UM
+                        API --> CM
+                        API --> KM
+                        subgraph External[External Services]
+                            DB[(Database)]
+                            AI[AI Engine]
+                        end
+                        DL --> DB
+                        KM --> AI
+                        class UI,BL,DL layer
+                        class UM,CM,KM module
+                        class DB,AI external
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Simplifies complexity.</li>
+                        <li>Enhances maintainability.</li>
+                        <li>Improves scalability.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 15. Global Analysis According to Hofmeister -->
+            <div class="section">
+                <h3>15. Global Analysis According to Hofmeister</h3>
+                <p>Global analysis systematically derives design strategies.</p>
+                <div class="mermaid">
+                    graph TD
+                        classDef factor fill:#fff3e0,stroke:#e65100,stroke-width:2px
+                        classDef strategy fill:#e8eaf6,stroke:#303f9f,stroke-width:2px
+                        classDef validation fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                        A[Analyze Factors] --> B[Prioritize Factors]
+                        B --> C[Derive Strategies]
+                        C --> D[Implement Architecture]
+                        D --> E[Validate Metrics]
+                        subgraph Factors[Influencing Factors]
+                            F1[Business Environment]
+                            F2[Technical Constraints]
+                            F3[Organizational Context]
+                            F4[System Qualities]
+                        end
+                        subgraph Strategies[Design Strategies]
+                            S1[Modularity]
+                            S2[Distribution]
+                            S3[Data Management]
+                            S4[Technology Selection]
+                        end
+                        subgraph Validation[Quality Validation]
+                            V1[Defined Metrics]
+                            V2[Quality Scenarios]
+                            V3[Architecture Tests]
+                        end
+                        Factors --> A
+                        C --> Strategies
+                        E --> Validation
+                        class F1,F2,F3,F4 factor
+                        class S1,S2,S3,S4 strategy
+                        class V1,V2,V3 validation
+                </div>
+                <div class="benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Provides a systematic framework.</li>
+                        <li>Addresses quality attributes.</li>
+                        <li>Ensures traceability.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <footer>
+                <p>© 2025 Software Architecture Guide. All rights reserved.</p>
+            </footer>
+        </div>
+
+        <div id="Description" class="tabcontent">
+            <h2>Description and Communication of Software Architectures</h2>
+            <p>Effective communication ensures all stakeholders understand the architecture.</p>
+            <ul>
+                <li><strong>Views:</strong> Different perspectives (e.g., logical, physical, deployment).</li>
+                <li><strong>Notations:</strong> UML diagrams, box-and-line diagrams.</li>
+                <li><strong>Documentation:</strong> Architecture Decision Records (ADRs), technical specs.</li>
+            </ul>
+        </div>
+
+        <div id="Analysis" class="tabcontent">
+            <h2>Analysis and Evaluation of Software Architectures</h2>
+            <p>Evaluating an architecture ensures it meets requirements and can handle real-world challenges.</p>
+            <ul>
+                <li><strong>Architecture Evaluation Methods:</strong> Techniques like ATAM (Architecture Tradeoff Analysis Method) to assess quality attributes.</li>
+                <li><strong>Risk Identification:</strong> Identify potential risks (e.g., performance bottlenecks) early in the design phase.</li>
+                <li><strong>Scenario-Based Analysis:</strong> Test the architecture against specific scenarios (e.g., high user load, system failure).</li>
+                <li><strong>Feedback Loops:</strong> Use evaluation results to refine the architecture iteratively.</li>
+            </ul>
+        </div>
+
+        <div id="Tools" class="tabcontent">
+            <h2>Tools for Software Architects (Optional)</h2>
+            <p>Tools can enhance architecture design and evaluation.</p>
+            <ul>
+                <li><strong>Modeling:</strong> Enterprise Architect, ArchiMate</li>
+                <li><strong>Analysis:</strong> SonarQube, JMeter</li>
+                <li><strong>Documentation:</strong> Confluence, Markdown</li>
+            </ul>
+        </div>
+
+        <div id="Examples" class="tabcontent">
+            <h2>Examples of Software Architectures</h2>
+            <p>Real-world examples illustrate architecture principles.</p>
+            <ul>
+                <li><strong>Monolithic:</strong> E-commerce platform with single codebase.</li>
+                <li><strong>Microservices:</strong> Netflix’s distributed system.</li>
+            </ul>
+        </div>
+
+        <div id="SystematicDesign" class="tabcontent">
+            <h2>Systematic Design Process</h2>
+            <div class="flowchart">
+                <div class="flowchart-step">Identify Requirements</div>
+                <div class="flowchart-step">Define Architecture Goals</div>
+                <div class="flowchart-step">Select Patterns</div>
+                <div class="flowchart-step">Design Components</div>
+                <div class="flowchart-step">Evaluate and Refine</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
